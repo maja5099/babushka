@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Babushka</title>
-    <!-- Her styler vi uden en .css fil  -->
+    <!-- STYLING (uden .css fil)  -->
     <style>
       img {
         max-width: 100%;
@@ -20,9 +20,14 @@
         margin-bottom: 50px;
         color: #055C9D;
         font-size: 10vw;
-        font-family: "roboto";
       }
-
+      h1,
+      h2,
+      h3,
+      h4,
+      p {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
       body {
         max-width: 1300px;
         margin: 0 auto;
@@ -35,7 +40,7 @@
         margin-bottom: 50px;
       }
       article {
-        border: 3px solid #055C9D;
+        border: 3.5px solid #055C9D;
         padding: 25px;
         cursor: pointer;
         background-color: whitesmoke;
@@ -63,8 +68,8 @@
       button:hover{
         background-color: rgba(5, 92, 158, 0.4);
         color: whitesmoke;
+        cursor: pointer;
       }
-
       #popup {
         display: none;
         position: fixed;
@@ -82,7 +87,7 @@
         margin: 2.5rem auto;
         padding: 25px;
         background-color: whitesmoke;
-        border: 3px solid #055C9D;
+        border: 5px solid #055C9D;
       }
       #luk {
         position: fixed;
@@ -96,12 +101,12 @@
   </head>
 
   <body>
-    <!-- Overskrifter -->
+    <!-- OVERSKRIFTER -->
     <h1>ба́бушка</h1>
     <h2>Alle</h2>
     <section></section>
 
-    <!-- Knapper -->
+    <!-- KNAPPER -->
     <nav>
       <button data-kategori="alle" class="valgt">Alle</button>
       <button data-kategori="forretter">Forretter</button>
@@ -111,10 +116,10 @@
       <button data-kategori="drikkevarer">Drikkevarer</button>
     </nav>
 
-    <!-- Tomt main-tag hvor indhold bliver puttet ind i -->
+    <!-- TOMT MAIN TAF (indhold bliver puttet ind senere) -->
     <main></main>
 
-    <!-- Section til pop-up vindue/single view -->
+    <!-- POP UP / SINGLE VIEW -->
     <section id="popup">
       <div id="luk">&#x2715</div>
       <article>
@@ -126,7 +131,7 @@
       </article>
     </section>
 
-    <!-- Forside med loop view -->
+    <!-- LOOP VIEW -->
     <template>
       <article>
         <img src="" alt="" class="billede" />
@@ -136,22 +141,25 @@
       </article>
     </template>
  
+    <h1>★</h1>
+
     <script>
-      //Her er links til restdb hvor JSON data kommer fra (istedet for et .json-dokument her mappen)
+      //RESTDB
       const url = "https://babushka-dd8a.restdb.io/rest/menu";
 
-      //Kode til restdb data siden
+      //KODE
       const options = {
         headers: {
           "x-apikey": "600ec2fb1346a1524ff12de4",
         },
       };
 
-      //Global variabel
+      //GLOBAL VARIABEL
       document.addEventListener("DOMContentLoaded", start);
       let retter;
       let filter = "alle";
 
+      //START FUNKTION
       function start() {
         const filterKnapper = document.querySelectorAll("nav button");
         filterKnapper.forEach((knap) =>
@@ -160,7 +168,7 @@
         hentData();
       }
 
-      //Nyt
+      //FILTRER FUNKTION
       function filtrerRetter() {
         filter = this.dataset.kategori;
         document.querySelector(".valgt").classList.remove("valgt");
@@ -169,7 +177,7 @@
         header.textContent = this.textContent;
       }
 
-      //Async function/asynkron metode henter, anmoder osv uden at opdate siden
+      //ASYNC FUNKTION (asynkron metode henter ændringer uden at opdate siden)
       async function hentData() {
         const respons = await fetch(url, options);
         //Her piller vi vores isolerede json data ud
@@ -178,13 +186,13 @@
         vis(json);
       }
 
-      //2 const'er (konstante variabler) til de tomme tags længere oppe
+      //CONST'ER (konstante variabler)
       const main = document.querySelector("main");
       const template = document.querySelector("template");
       const header = document.querySelector("h2");
       const md = "-md.jpg";
 
-      //Her laver vi funktionen vis med en array med en forEach (loop-syntax)
+      //FUNCTION VIS (med en array med en forEach (loop-syntax))
       function vis(json) {
         console.log(json);
         main.textContent = "";
