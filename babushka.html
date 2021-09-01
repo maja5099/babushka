@@ -9,6 +9,7 @@
     <style>
       img {
         max-width: 100%;
+        border: 2px solid #2b2b2b;
       }
       h1,
       h2 {
@@ -16,18 +17,21 @@
         justify-content: center;
       }
       h1 {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
         margin-top: 50px;
         margin-bottom: 50px;
         color: #055C9D;
         font-size: 10vw;
       }
-      h1,
       h2,
       h3,
       h4,
-      p {
+      p,
+      footer {
         font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: #2b2b2b;
       }
+
       body {
         max-width: 1300px;
         margin: 0 auto;
@@ -42,8 +46,11 @@
       article {
         border: 3.5px solid #055C9D;
         padding: 25px;
-        cursor: pointer;
         background-color: whitesmoke;
+      }
+      article:hover{
+        border: 3.5px solid #eb0000;
+        cursor: pointer;
       }
       .valgt {
         background-color: rgba(156, 55, 55, 0.2);
@@ -58,13 +65,13 @@
         margin-top: 50px;
       }
       button {
-      padding: 8px 30px;
-      border: 3px solid #055C9D;
-      margin: 0 1px 1px 0;
-      text-decoration: none;
-      color: black;
-      text-align: center;
-      font-size: 1rem;
+        padding: 8px 30px;
+        border: 3px solid #055C9D;
+        margin: 0 1px 1px 0;
+        text-decoration: none;
+        color: #2b2b2b;
+        text-align: center;
+        font-size: 1rem;
       }
       button:hover{
         background-color: rgba(5, 92, 158, 0.2);
@@ -105,6 +112,12 @@
         font-weight: bold;
         color: whitesmoke;
         cursor: pointer;
+      }
+      footer {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 50px;
+        font-size: 1rem;
       }
     </style>
   </head>
@@ -236,4 +249,5 @@
 
     </script>
   </body>
+  <footer><em>Lavet af Maja Birch Sørensen</em></footer>
 </html>
