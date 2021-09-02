@@ -17,7 +17,7 @@
         justify-content: center;
       }
       h1 {
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-family: Verdana, Geneva, Tahoma, sans-serif; 
         margin-top: 50px;
         margin-bottom: 70px;
         color: #eb0000;
@@ -98,15 +98,20 @@
         overflow: scroll;
       }
       #popup article {
-        width: 50vw;
+        width: 35vw;
         display: flex;
         flex-direction: column;
-        margin: 2.5rem auto;
-        padding: 25px;
+        margin: 6rem auto;
+        padding: 30px;
         background-color: #e6e6e6;
         border: 5px solid #055C9D;
         border-radius: 5px;
         cursor: default;
+      }
+      @media only screen and (max-width: 1000px) {
+        #popup article {
+          width: 40vh;
+          }
       }
       #popup h3, #popup h4 {
         display: flex;
