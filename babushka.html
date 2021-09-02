@@ -9,7 +9,7 @@
     <style>
       img {
         max-width: 100%;
-        border: 2px solid #2b2b2b;
+        border: 2.5px solid #2b2b2b;
       }
       h1,
       h2 {
@@ -20,7 +20,7 @@
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         margin-top: 50px;
         margin-bottom: 50px;
-        color: #055C9D;
+        color: #eb0000;
         font-size: 10vw;
       }
       h2,
@@ -37,6 +37,11 @@
         margin: 0 auto;
         background-color: #CCCCCC;
       }
+      @media only screen and (max-width: 1350px) {
+        body {
+          margin: 25px;
+          }
+      }
       main {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -44,12 +49,13 @@
         margin-bottom: 50px;
       }
       article {
-        border: 3.5px solid #055C9D;
+        border: 3px solid #055C9D;
         padding: 25px;
         background-color: whitesmoke;
+        border-radius: 5px;
       }
-      article:hover{
-        border: 3.5px solid #eb0000;
+      article:hover {
+        border: 3px solid #eb0000;
         cursor: pointer;
       }
       .valgt {
@@ -72,6 +78,7 @@
         color: #2b2b2b;
         text-align: center;
         font-size: 1rem;
+        border-radius: 5px;
       }
       button:hover{
         background-color: rgba(5, 92, 158, 0.2);
@@ -96,12 +103,9 @@
         padding: 25px;
         background-color: whitesmoke;
         border: 5px solid #055C9D;
+        border-radius: 5px;
       }
-      #popup h3 {
-        display: flex;
-        justify-content: center;
-      }
-      #popup h4 {
+      #popup h3, #popup h4 {
         display: flex;
         justify-content: center;
       }
@@ -129,14 +133,15 @@
     <section></section>
 
     <!-- KNAPPER -->
-    <nav>
-      <button data-kategori="alle" class="valgt">Alle</button>
-      <button data-kategori="forretter">Forretter</button>
-      <button data-kategori="hovedretter">Hovedretter</button>
-      <button data-kategori="sideorders">Sideorders</button>
-      <button data-kategori="desserter">Desserter</button>
-      <button data-kategori="drikkevarer">Drikkevarer</button>
-    </nav>
+      <nav>
+        <button data-kategori="alle" class="valgt">Alle</button>
+        <button data-kategori="forretter">Forretter</button>
+        <button data-kategori="hovedretter">Hovedretter</button>
+        <button data-kategori="sideorders">Sideorders</button>
+        <button data-kategori="desserter">Desserter</button>
+        <button data-kategori="drikkevarer">Drikkevarer</button>
+      </nav>
+
 
     <!-- TOMT MAIN TAF (indhold bliver puttet ind senere) -->
     <main></main>
@@ -168,20 +173,18 @@
     <script>
       //RESTDB
       const url = "https://babushka-dd8a.restdb.io/rest/menu";
-
-      //KODE
       const options = {
         headers: {
           "x-apikey": "600ec2fb1346a1524ff12de4",
         },
       };
 
-      //GLOBAL VARIABEL
+      //GLOBALE VARIABLER
       document.addEventListener("DOMContentLoaded", start);
       let retter;
       let filter = "alle";
 
-      //START FUNKTION
+      //START FUNKTION (filtrer knapper)
       function start() {
         const filterKnapper = document.querySelectorAll("nav button");
         filterKnapper.forEach((knap) =>
@@ -190,7 +193,7 @@
         hentData();
       }
 
-      //FILTRER FUNKTION
+      //FILTRER FUNKTION (viser valgt knap som farvet + skriver overskrift)
       function filtrerRetter() {
         filter = this.dataset.kategori;
         document.querySelector(".valgt").classList.remove("valgt");
@@ -199,7 +202,7 @@
         header.textContent = this.textContent;
       }
 
-      //ASYNC FUNKTION (asynkron metode henter ændringer uden at opdate siden)
+      //ASYNC FUNKTION (asynkron metode henter ændringer uden at opdatere siden)
       async function hentData() {
         const respons = await fetch(url, options);
         //Her piller vi vores isolerede json data ud
@@ -208,7 +211,7 @@
         vis(json);
       }
 
-      //CONST'ER (konstante variabler)
+      //GLOBALE CONST'ER (konstante variabler)
       const main = document.querySelector("main");
       const template = document.querySelector("template");
       const header = document.querySelector("h2");
